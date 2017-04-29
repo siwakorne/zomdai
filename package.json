@@ -11,12 +11,17 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+
     "axios": "^0.16.1",
     "bulma": "^0.4.1",
     "element-ui": "^1.2.9",
     "vue": "^2.2.6",
     "vue-axios": "^2.0.2",
-    "vue-router": "^2.3.1"
+    "vue-router": "^2.3.1",
+    "bulma": "^0.4.1",
+    "element-ui": "^1.2.9",
+    "vue-google-maps-location-selector": "^1.0.1",
+    "vue2-google-maps": "^0.7.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

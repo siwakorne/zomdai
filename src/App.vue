@@ -1,17 +1,25 @@
 <template>
-  <div id="app">
-    <p class="notification" id="header">
+  <div id="columns">
+    <p class="column is-flex-mobile" id="header">
       <img src="./assets/logo.png" id="marimage">
+      <div class="column" style="float:right;
+      width: 100%;">
+        <menus></menus>
+      </div>
     </p>
-    <router-view></router-view>
+    <router-view ></router-view>
   </div>
 </template>
 
 <script>
+import Menus from '@/components/Menu'
 import 'bulma/css/bulma.css'
 
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    Menus
+  }
 }
 </script>
 <style>
@@ -20,14 +28,13 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: left;
-    color: #black;
+    color: black;
     margin-top: 0px;
   }
   #marimage {
     height:70px;
     width:90px;
-    margin-right:1600px;
-    margin-top:-12px;
+    margin-top:-10px;
   }
   #header {
     background-color:#ffeb3b;
