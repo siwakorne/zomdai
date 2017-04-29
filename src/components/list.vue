@@ -10,6 +10,13 @@
 </template>
 <script>
 import axios from 'axios'
+axios.create({
+  timeout: 10000,
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+})
 
 export default {
   name: 'list',

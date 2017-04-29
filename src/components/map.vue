@@ -1,19 +1,20 @@
 <template>
-  <gmap-map :center="center" :zoom="10" class="map--gmap">
-    <gmap-marker
-      :key="index"
-      v-for="(m, index) in markers"
-      :position="m.position"
-      :clickable="true"
-      :draggable="true"
-      @click="center=m.position"
-    ></gmap-marker>
+ <gmap-map :center="center" :zoom="12" class="map--gmap">
+   <gmap-marker
+     v-for="shop in shops"
+     :position="shop.geometry.location"
+     :clickable="true"
+     @click="center=shop.geometry.location"
+   ></gmap-marker>
   </gmap-map>
+
+
 </template>
 
 <script>
   import * as VueGoogleMaps from 'vue2-google-maps'
   import Vue from 'vue'
+  import axios from 'axios'
 
   Vue.use(VueGoogleMaps, {
     load: {
@@ -25,11 +26,15 @@
   export default {
     data () {
       return {
-        center: {lat: 14.1589141, lng: 101.3451766},
-        markers: [{
-          position: {lat: 14.1511767, lng: 101.3628938}
-        }]
+        center: {lat: 13.8220887, lng: 100.595177},
+        shops: []
       }
+    },
+    beforeMount () {
+      axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=13.8220887%2C100.595177&radius=5000&type=car&keyword=repair&key=AIzaSyDN0-75xfLIXbMfGDN--esKWkNpmYS3viw').then((response) => {
+        this.shops = response.data.results
+        console.log(this.shops)
+      })
     }
   }
 </script>

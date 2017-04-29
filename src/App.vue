@@ -40,12 +40,9 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: left;
-<<<<<<< HEAD
     color: #black;
     margin-top: 0px;
-=======
-    color: #FFFF00;
->>>>>>> map conflic
+
   }
   #marimage {
     height:70px;
@@ -57,5 +54,6 @@ export default {
     background-color:#ffeb3b;
     height:80px ;
     margin-top:-60px;
+    margin-bottom: 0;
   }
 </style>
