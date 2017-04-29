@@ -19,7 +19,7 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: left;
-    color: #FFFF00;
+    color: #black;
     margin-top: 0px;
   }
   #marimage {

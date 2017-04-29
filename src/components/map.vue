@@ -1,15 +1,14 @@
 <template lang="html">
-  <div class="map">
+  <div class="">
     {{ message }}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'map',
   data () {
     return {
-      message: 'Map Components'
+      message: 'map component'
     }
   }
 }
