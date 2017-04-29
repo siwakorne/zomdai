@@ -36,22 +36,21 @@
         cpop: 'map',
         latMap: 0,
         lngMap: 0,
-        localhere: ''
+        localhere: '',
+        selectShop: '',
+        refShop: {},
+        locate: ''
       }
     },
     computed: {
       center () {
         return {lat: this.localhere[0], lng: this.localhere[1]}
       }
-        selectShop: '',
-        refShop: {},
-        locate: ''
-      }
     },
     beforeMount () {
       this.getLocation()
       axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=13.8220887%2C100.595177&radius=5000&type=car&keyword=repair&key=AIzaSyDN0-75xfLIXbMfGDN--esKWkNpmYS3viw').then((response) => {
-      this.shops = response.data.results
+        this.shops = response.data.results
       })
     },
     methods: {
