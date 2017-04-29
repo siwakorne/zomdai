@@ -4,34 +4,14 @@
       <img src="./assets/logo.png" id="marimage">
     </p>
     <router-view></router-view>
-    <!-- <popup :flag="flagPopup" @closePopup="closePopup"></popup>
-    {{ flagPopup }}
-    <button id="btnPop" @click="openPopup()">Show Popup  </button> -->
   </div>
 </template>
 
 <script>
 import 'bulma/css/bulma.css'
-import Popup from '@/components/Popup'
 
 export default {
-  name: 'app',
-  data () {
-    return {
-      flagPopup: false
-    }
-  },
-  methods: {
-    openPopup: function () {
-      this.flagPopup = true
-    },
-    closePopup: function () {
-      this.flagPopup = false
-    }
-  },
-  components: {
-    Popup
-  }
+  name: 'app'
 }
 </script>
 <style>
@@ -52,6 +32,5 @@ export default {
   #header {
     background-color:#ffeb3b;
     height:80px ;
-    margin-top:-60px;
   }
 </style>

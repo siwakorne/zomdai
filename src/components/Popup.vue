@@ -1,9 +1,13 @@
 <template>
-  <el-dialog title="Tips" v-model="flag" size="tiny" @close="close">
-    <span>This is a message</span>
+  <el-dialog :title="'ชื่อร้าน : ' + detail.name"  v-model="flag" size="tiny" @close="close">
+    <span><br/>
+    ที่อยู่ :  {{ detail.formatted_address }}<br/>
+    เวลาเปิด-ปิด : {{ detail.opening_hours }}<br/>
+    <!-- วันที่ให้บริการ : {{ detail.opening_hours.weekday_text }}<br/> -->
+    เบอร์ : {{ detail.formatted_phone_number }}<br/>
+    เรดติ้ง : {{ detail.rating }} ดาว<br/>
+    </span>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="close">Cancel</el-button>
-      <el-button type="primary" @click="close">Confirm</el-button>
     </span>
   </el-dialog>
 </template>
@@ -11,13 +15,8 @@
 <script>
 import 'bulma/css/bulma.css'
 export default {
-  name: 'app',
-  data () {
-    return {
-      counter: 0
-    }
-  },
-  props: ['flag'],
+  name: 'popup',
+  props: ['flag', 'detail'],
   methods: {
     close: function () {
       this.$emit('closePopup')
@@ -28,12 +27,4 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
