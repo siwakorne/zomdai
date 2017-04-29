@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+
+  <p class="notification" id="header">
+        <img src="./assets/logo.png" height="100" width="100">
+</p>
+
   </div>
 </template>
 
@@ -17,8 +20,11 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  text-align: left;
+  color: #FFFF00;
+  margin-top: 15px;
+}
+#header {
+  background-color:#FFFF00;
 }
 </style>
