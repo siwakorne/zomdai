@@ -1,13 +1,15 @@
 <template>
- <gmap-map :center="center" :zoom="12" class="map--gmap">
-   <gmap-marker
-     v-for="shop in shops"
-     :position="shop.geometry.location"
-     :clickable="true"
-     @click="center=shop.geometry.location"
-   ></gmap-marker>
-  </gmap-map>
-
+  <div class="">
+    <gmap-map :center="center" :zoom="12" class="map--gmap">
+      <gmap-marker
+        v-for="shop in shops"
+        :position="shop.geometry.location"
+        :clickable="true"
+        @click="TestClick(shop.geometry.location)"
+      ></gmap-marker>
+     </gmap-map>
+     <popup :flag="flagPopup" :detail="detailShop" :latPop="latMap" :lngPop="lngMap" @closePopup="closePopup" ></popup>
+  </div>
 
 </template>
 
@@ -15,6 +17,7 @@
   import * as VueGoogleMaps from 'vue2-google-maps'
   import Vue from 'vue'
   import axios from 'axios'
+  import Popup from '@/components/Popup'
 
   Vue.use(VueGoogleMaps, {
     load: {
@@ -27,7 +30,11 @@
     data () {
       return {
         center: {lat: 13.8220887, lng: 100.595177},
-        shops: []
+        shops: [],
+        flagPopup: false,
+        detailShop: 0,
+        latMap: 0,
+        lngMap: 0
       }
     },
     beforeMount () {
@@ -35,6 +42,20 @@
         this.shops = response.data.results
         console.log(this.shops)
       })
+    },
+    methods: {
+      TestClick (position) {
+        this.center = position
+        this.latMap = this.center.lat
+        this.lngMap = this.center.lng
+        this.flagPopup = true
+      },
+      closePopup: function () {
+        this.flagPopup = false
+      }
+    },
+    components: {
+      Popup
     }
   }
 </script>

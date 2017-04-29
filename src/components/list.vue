@@ -2,7 +2,9 @@
 <div class="container list-container">
   <popup :flag="flagPopup" :detail="detailShop" @closePopup="closePopup"></popup>
   <div class="columns is-tablet is-multiline">
-    <div class="column is-one-third" v-for="(List, key, index) in Lists" @click="openPopup(List.reference)">
+    <div class="column is-one-third" v-for="(List, key, index) in Lists"  @click="openPopup(List.reference)">
+    <!-- v-if="List.geometry.location === map.center" -->
+
         <!-- ที่อยู่ร้าน : {{List.geometry.location}}
         ที่อยู่ของผู้ใช้ : {{List.geometry.viewport}} -->
       <a @click="click()">
@@ -35,6 +37,7 @@
 import axios from 'axios'
 import Popup from '@/components/Popup'
 import 'bulma/css/bulma.css'
+// import Map from '@/components/map'
 
 export default {
   name: 'list',
