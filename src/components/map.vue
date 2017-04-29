@@ -6,10 +6,10 @@
         v-for="shop in shops"
         :position="shop.geometry.location"
         :clickable="true"
-        @click="TestClick(shop.geometry.location)"
+        @click="TestClick(shop.geometry.location, shop,shop.reference)"
       ></gmap-marker>
      </gmap-map>
-     <popup :flag="flagPopup" :detail="detailShop" :latPop="latMap" :lngPop="lngMap" @closePopup="closePopup" ></popup>
+     <popup :flag="flagPopup" :cpop="cpop" :details="shops" :select-shop="refShop" :latPop="latMap" :lngPop="lngMap" @closePopup="closePopup(locate)" ></popup>
   </div>
 </template>
 
@@ -29,30 +29,45 @@
   export default {
     data () {
       return {
-        shops: [],
+        center: {lat: 13.8220887, lng: 100.595177},
+        shops: {},
         flagPopup: false,
         detailShop: 0,
+        cpop: 'map',
         latMap: 0,
         lngMap: 0,
         localhere: ''
       }
     },
-    beforeMount () {
-      this.getLocation()
-    },
     computed: {
       center () {
         return {lat: this.localhere[0], lng: this.localhere[1]}
       }
+        selectShop: '',
+        refShop: {},
+        locate: ''
+      }
+    },
+    beforeMount () {
+      this.getLocation()
+      axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=13.8220887%2C100.595177&radius=5000&type=car&keyword=repair&key=AIzaSyDN0-75xfLIXbMfGDN--esKWkNpmYS3viw').then((response) => {
+      this.shops = response.data.results
+      })
     },
     methods: {
-      TestClick (position) {
+      TestClick (position, shop, locate) {
         this.center = position
         this.latMap = this.center.lat
         this.lngMap = this.center.lng
         this.flagPopup = true
+        this.selectShop = shop
+        this.locate = locate
       },
-      closePopup: function () {
+      closePopup: function (data) {
+        axios.get('https://maps.googleapis.com/maps/api/place/details/json?reference=' + data + '&key=AIzaSyBar4Mz_GdBZW_ob2TK3rcffAB_rl5PnbE').then((response) => {
+          this.refShop = response.data.result
+          console.log(this.refShop)
+        })
         this.flagPopup = false
       },
       getLocation: function () {

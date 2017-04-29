@@ -1,21 +1,56 @@
 <template>
   <div class="">
-    <el-dialog :title="'ชื่อร้าน : ' + detail.name"  v-model="flag" size  ="tiny" @close="close">
-      <span v-if="detail != 0"><br/>
+      <span v-if="cpop === 'list'"><br/>
+        <el-dialog :title="'ชื่อร้าน : ' + detail.name"   :value="newFlag" size  ="tiny" @close="close" @open="open">
+<hr style="margin-top:-20px; background-color:#ffeb3b;" />
       ที่อยู่ :  {{ detail.formatted_address }}<br/>
-      เวลาเปิด-ปิด : {{ detail.opening_hours }}<br/>
+      เวลาเปิด-ปิด : <span v-if="detail.opening_hours==null">ไม่ระบุเวลา </span>
+                  <span v-else="detail.opening_hours!=null">
+                    {{detail.opening_hours.weekday_text[0]}}<br/>
+                    {{detail.opening_hours.weekday_text[1]}}<br/>
+                    {{detail.opening_hours.weekday_text[2]}}<br/>
+                    {{detail.opening_hours.weekday_text[3]}}<br/>
+                    {{detail.opening_hours.weekday_text[4]}}<br/>
+                    {{detail.opening_hours.weekday_text[5]}}<br/>
+                    {{detail.opening_hours.weekday_text[6]}}
+                  </span><br />
       <!-- วันที่ให้บริการ : {{ detail.opening_hours.weekday_text }}<br/> -->
-      {{detail}}
-      เบอร์ : {{ detail.formatted_phone_number }}<br/>
-      เรดติ้ง : {{ detail.rating }} ดาว<br/>
+      <!-- {{detail}} -->
+      เบอร์ : <span v-if="detail.formatted_phone_number==null">ไม่ระบุเบอร์</span>
+             <span v-else>{{ detail.formatted_phone_number }}</span><br/>
+             {{ detail.rating }}
+      เรดติ้ง : <span v-if="detail.rating==null">ไม่มีรายการคะแนน</span>
+              <span v-else>{{ detail.rating }}</span>
+              </el-dialog>
       </span>
       <span v-else>
-          Lat  : {{latPop}}<br/>
-          Long : {{lngPop}}
+          <el-dialog :title="'ชื่อร้าน : ' + selectShop.name" v-model="newFlag"  size  ="tiny" @close="close" @open="open">
+<hr style="margin-top:-20px; background-color:#ffeb3b;" />
+            ที่อยู่ :  {{ selectShop.vicinity }}<br/>
+            <!--   v-model="flag"  -->
+            เวลาเปิด-ปิด :<br/>
+                          <span v-if="selectShop.opening_hours==null">ไม่ระบุเวลา </span>
+                          <span v-else="selectShop.opening_hours!=null">
+                          {{selectShop.opening_hours.weekday_text[0]}}<br/>
+                          {{selectShop.opening_hours.weekday_text[1]}}<br/>
+                          {{selectShop.opening_hours.weekday_text[2]}}<br/>
+                          {{selectShop.opening_hours.weekday_text[3]}}<br/>
+                          {{selectShop.opening_hours.weekday_text[4]}}<br/>
+                          {{selectShop.opening_hours.weekday_text[5]}}<br/>
+                          {{selectShop.opening_hours.weekday_text[6]}}
+                        </span><br />
+                        เบอร์ : <span v-if="selectShop.formatted_phone_number==null">ไม่ระบุเบอร์</span>
+                               <span v-else>{{ selectShop.formatted_phone_number }}</span><br/>
+
+                        เรดติ้ง : <span v-if="selectShop.rating==null">ไม่มีรายการคะแนน</span>
+                                <span v-else>{{ selectShop.rating + " ดาว" }}</span>
+                                </el-dialog>
+                        </span>
+          </el-dialog>
       </span>
       <span slot="footer" class="dialog-footer">
       </span>
-    </el-dialog>
+
   </div>
 
 </template>
@@ -24,10 +59,19 @@
 import 'bulma/css/bulma.css'
 export default {
   name: 'popup',
-  props: ['flag', 'detail', 'latPop', 'lngPop', 'shops'],
+  props: ['flag', 'latPop', 'lngPop', 'cpop', 'detail', 'selectShop'],
   methods: {
     close: function () {
+      console.log(this.details)
       this.$emit('closePopup')
+    },
+    open () {
+      this.$emit('openPopup')
+    }
+  },
+  computed: {
+    newFlag () {
+      return this.flag
     }
   }
 }
