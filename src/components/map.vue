@@ -10,7 +10,6 @@
      </gmap-map>
      <popup :flag="flagPopup" :detail="detailShop" :latPop="latMap" :lngPop="lngMap" @closePopup="closePopup" ></popup>
   </div>
-
 </template>
 
 <script>
