@@ -2,7 +2,7 @@
   <div id="app">
 
   <p class="notification" id="header" >
-        <img src="./assets/logo.png" height="100" width="100">
+        <img src="./assets/logo.png" id="marimage" >
 </p>
 
   </div>
@@ -24,7 +24,15 @@ export default {
   color: #FFFF00;
   margin-top: 15px;
 }
+#marimage {
+  height:70px;
+  width:90px;
+  margin-top:-10px;
+  margin-left:-10px;
+
+}
 #header {
   background-color:#e0e024;
+   height:80px ;
 }
 </style>
