@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <p class="notification" id="header" >
+      <img src="./assets/logo.png" id="marimage" >
+    </p>
     <router-view></router-view>
-    <div class="columns">
-      <div class="column">
-        First column
-      </div>
-      <div class="column">
-        Second column
-      </div>
-      <div class="column">
-        Third column
-      </div>
-      <div class="column">
-        Fourth column
-      </div>
-    </div>
+    <popup :flag="flagPopup" @closePopup="closePopup"></popup>
+    {{ flagPopup }}
+    <button id="btnPop" @click="openPopup()">Show Popup  </button>
   </div>
 </template>
 
 <script>
 import 'bulma/css/bulma.css'
+import Popup from '@/components/Popup'
+
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+    return {
+      flagPopup: false
+    }
+  },
+  methods: {
+    openPopup: function () {
+      this.flagPopup = true
+    },
+    closePopup: function () {
+      this.flagPopup = false
+    }
+  },
+  components: {
+    Popup
+  }
 }
 </script>
 
