@@ -22,7 +22,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #FFFF00;
-  margin-top: 15px;
+  margin-top: 0px;
 }
 #marimage {
   height:70px;
