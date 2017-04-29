@@ -2,6 +2,20 @@
   <div id="app">
     <img src="./assets/logo.png">
     <router-view></router-view>
+    <div class="columns">
+      <div class="column">
+        First column
+      </div>
+      <div class="column">
+        Second column
+      </div>
+      <div class="column">
+        Third column
+      </div>
+      <div class="column">
+        Fourth column
+      </div>
+    </div>
   </div>
 </template>
 
