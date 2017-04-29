@@ -34,7 +34,6 @@ export default {
   #marimage {
     height:70px;
     width:90px;
-    margin-top:-10px;
   }
   #header {
     background-color:#ffeb3b;

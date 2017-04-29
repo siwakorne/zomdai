@@ -1,11 +1,10 @@
 <template lang="html">
 <div class="container list-container">
-  <popup :flag="flagPopup" :detail="detailShop" @closePopup="closePopup"></popup>
-  <div class="columns is-tablet is-multiline">
+  {{ loading(localhere[0]) }}
+  <div class="columns is-tablet is-multiline list-fix">
     <div class="column is-one-third" v-for="(List, key, index) in Lists" @click="openPopup(List.reference)">
         <!-- ที่อยู่ร้าน : {{List.geometry.location}}
         ที่อยู่ของผู้ใช้ : {{List.geometry.viewport}} -->
-      <a @click="click()">
       <div class="card" style="height:250px;">
         <div class="card-content">
           <div class="media">
@@ -18,7 +17,6 @@
               <p class="title is-4">{{ List.name}}</p>
             </div>
           </div>
-
           <div class="content">
             ที่อยู่ : {{List.vicinity}}
             <br>
@@ -26,7 +24,6 @@
           </div>
         </div>
       </div>
-      </a>
     </div>
   </div>
 </div>
@@ -43,7 +40,8 @@ export default {
       Lists: '',
       num: 0,
       flagPopup: false,
-      detailShop: {}
+      detailShop: {},
+      localhere: []
     }
   },
   methods: {
@@ -55,15 +53,28 @@ export default {
     },
     closePopup: function () {
       this.flagPopup = false
+    },
+    getLocation: function () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(this.showPosition)
+      } else {
+        console.log('Geolocation is not supported by this browser.')
+      }
+    },
+    showPosition: function (position) {
+      this.localhere = [position.coords.latitude, position.coords.longitude]
+    },
+    loading (para) {
+      axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + this.localhere[0] + '%2C' + this.localhere[1] + '&radius=5000&type=car&keyword=repair&key=AIzaSyDN0-75xfLIXbMfGDN--esKWkNpmYS3viw').then((response) => {
+        this.Lists = response.data.results
+      })
     }
   },
   components: {
     Popup
   },
   beforeMount () {
-    axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=13.8220887%2C100.595177&radius=5000&type=car&keyword=repair&key=AIzaSyDN0-75xfLIXbMfGDN--esKWkNpmYS3viw').then((response) => {
-      this.Lists = response.data.results
-    })
+    this.getLocation()
   }
 }
 </script>
@@ -75,5 +86,8 @@ export default {
 .list-container{
   float:left;
   width:100%;
+}
+.list-fix{
+  margin-left:10px;
 }
 </style>

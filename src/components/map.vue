@@ -4,11 +4,9 @@
      v-for="shop in shops"
      :position="shop.geometry.location"
      :clickable="true"
-     @click="center=shop.geometry.location"
+     @click="testclick(shop.geometry.location)"
    ></gmap-marker>
   </gmap-map>
-
-
 </template>
 
 <script>
@@ -35,6 +33,12 @@
         this.shops = response.data.results
         console.log(this.shops)
       })
+    },
+    methods: {
+      testclick (data) {
+        this.center = data
+        alert('Clicked')
+      }
     }
   }
 </script>
