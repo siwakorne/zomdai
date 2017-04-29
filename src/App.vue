@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <p class="notification" id="header" >
+      <img src="./assets/logo.png" id="marimage" >
+    </p>
     <router-view></router-view>
   </div>
 </template>
@@ -10,8 +13,8 @@ export default {
   name: 'app'
 }
 </script>
-
 <style>
+<<<<<<< HEAD
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,4 +22,24 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+=======
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: left;
+    color: #FFFF00;
+    margin-top: 0px;
+  }
+  #marimage {
+    height:70px;
+    width:90px;
+    margin-top:-10px;
+    margin-left:-10px;
+  }
+  #header {
+    background-color:#ffeb3b;
+     height:80px ;
+  }
+>>>>>>> 4198e712fe3e9fe4d565cac203402098e194daae
 </style>
