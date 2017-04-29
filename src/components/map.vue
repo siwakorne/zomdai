@@ -29,7 +29,6 @@
   export default {
     data () {
       return {
-        center: {lat: 13.8220887, lng: 100.595177},
         shops: {},
         flagPopup: false,
         detailShop: 0,
