@@ -1,10 +1,10 @@
 <template>
   <div id="app">
 
-  <p class="notification" id="header">
+  <p class="notification" id="header" >
         <img src="./assets/logo.png" height="100" width="100">
 </p>
-sadsad
+
   </div>
 </template>
 
@@ -25,6 +25,6 @@ export default {
   margin-top: 15px;
 }
 #header {
-  background-color:#FFFF00;
+  background-color:#e0e024;
 }
 </style>
