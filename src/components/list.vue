@@ -21,7 +21,6 @@
           <div class="content">
             ที่อยู่ : {{List.vicinity}}
             <br>
-            <small>11:09 PM - 1 Jan 2016</small>
           </div>
         </div>
       </div>

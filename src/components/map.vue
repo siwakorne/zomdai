@@ -1,5 +1,6 @@
 <template>
   <div class="">
+    {{ loading(localhere[0]) }}
     <gmap-map :center="center" :zoom="12" class="map--gmap">
       <gmap-marker
         v-for="shop in shops"
@@ -28,19 +29,21 @@
   export default {
     data () {
       return {
-        center: {lat: 13.8220887, lng: 100.595177},
         shops: [],
         flagPopup: false,
         detailShop: 0,
         latMap: 0,
-        lngMap: 0
+        lngMap: 0,
+        localhere: ''
       }
     },
     beforeMount () {
-      axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=13.8220887%2C100.595177&radius=5000&type=car&keyword=repair&key=AIzaSyDN0-75xfLIXbMfGDN--esKWkNpmYS3viw').then((response) => {
-        this.shops = response.data.results
-        console.log(this.shops)
-      })
+      this.getLocation()
+    },
+    computed: {
+      center () {
+        return {lat: this.localhere[0], lng: this.localhere[1]}
+      }
     },
     methods: {
       TestClick (position) {
@@ -51,6 +54,22 @@
       },
       closePopup: function () {
         this.flagPopup = false
+      },
+      getLocation: function () {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(this.showPosition)
+        } else {
+          console.log('Geolocation is not supported by this browser.')
+        }
+      },
+      showPosition: function (position) {
+        this.localhere = [position.coords.latitude, position.coords.longitude]
+      },
+      loading (para) {
+        axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + this.localhere[0] + '%2C' + this.localhere[1] + '&radius=5000&type=car&keyword=repair&key=AIzaSyDN0-75xfLIXbMfGDN--esKWkNpmYS3viw').then((response) => {
+          this.shops = response.data.results
+          console.log(this.shops)
+        })
       }
     },
     components: {
