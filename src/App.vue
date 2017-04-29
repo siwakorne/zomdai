@@ -2,7 +2,8 @@
   <div id="columns">
     <p class="column is-flex-mobile" id="header">
       <img src="./assets/logo.png" id="marimage">
-      <div class="column">
+      <div class="column" style="float:right;
+      width: 100%;">
         <menus></menus>
       </div>
     </p>

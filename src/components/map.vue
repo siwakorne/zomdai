@@ -42,7 +42,7 @@
 <style lang="css">
   .map--gmap {
     width: 100vw;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 80px - 60px);
     float:left;
   }
 </style>
