@@ -1,18 +1,19 @@
 <template>
-  <div id="app">
-    <p class="notification" id="header">
+  <div id="columns">
+    <p class="column is-flex-mobile" id="header">
       <img src="./assets/logo.png" id="marimage">
+      <div class="column">
+        <menus></menus>
+      </div>
     </p>
-    <router-view></router-view>
-    <!-- <popup :flag="flagPopup" @closePopup="closePopup"></popup>
-    {{ flagPopup }}
-    <button id="btnPop" @click="openPopup()">Show Popup  </button> -->
+    <router-view ></router-view>
   </div>
 </template>
 
 <script>
 import 'bulma/css/bulma.css'
 import Popup from '@/components/Popup'
+import Menus from '@/components/Menu'
 
 export default {
   name: 'app',
@@ -30,7 +31,8 @@ export default {
     }
   },
   components: {
-    Popup
+    Popup,
+    Menus
   }
 }
 </script>
@@ -46,12 +48,10 @@ export default {
   #marimage {
     height:70px;
     width:90px;
-    margin-right:1600px;
-    margin-top:-12px;
+    margin-top:-10px;
   }
   #header {
     background-color:#ffeb3b;
     height:80px ;
-    margin-top:-60px;
   }
 </style>
