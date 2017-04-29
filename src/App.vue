@@ -32,7 +32,7 @@ export default {
 
 }
 #header {
-  background-color:#e0e024;
+  background-color:#ffeb3b;
    height:80px ;
 }
 </style>
