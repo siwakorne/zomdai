@@ -3,8 +3,8 @@
       <span v-if="cpop === 'list'"><br/>
         <el-dialog :title="'ชื่อร้าน : ' + detail.name"   :value="newFlag" size  ="tiny" @close="close" @open="open">
 <hr style="margin-top:-20px; background-color:#ffeb3b;" />
-      ที่อยู่ :  {{ detail.formatted_address }}<br/>
-      เวลาเปิด-ปิด : <span v-if="detail.opening_hours==null">ไม่ระบุเวลา </span>
+      <img src="../assets/home.png" width="25px" height="25px" style="margin-right: 15px">่ :  {{ detail.formatted_address }}<br/>
+      <img src="../assets/time.png" width="25px" height="25px" style="margin-right: 15px"> : <span v-if="detail.opening_hours==null">ไม่ระบุเวลา </span>
                   <span v-else="detail.opening_hours!=null">
                     {{detail.opening_hours.weekday_text[0]}}<br/>
                     {{detail.opening_hours.weekday_text[1]}}<br/>
@@ -16,19 +16,21 @@
                   </span><br />
       <!-- วันที่ให้บริการ : {{ detail.opening_hours.weekday_text }}<br/> -->
       <!-- {{detail}} -->
-      เบอร์ : <span v-if="detail.formatted_phone_number==null">ไม่ระบุเบอร์</span>
+      <img src="../assets/call.png" width="25px" height="25px" style="margin-right: 15px">
+           : <span v-if="detail.formatted_phone_number==null">ไม่ระบุเบอร์</span>
              <span v-else>{{ detail.formatted_phone_number }}</span><br/>
              {{ detail.rating }}
-      เรดติ้ง : <span v-if="detail.rating==null">ไม่มีรายการคะแนน</span>
+      <img src="../assets/rating.png" width="25px" height="25px" style="margin-right: 15px">
+            : <span v-if="detail.rating==null">ไม่มีรายการคะแนน</span>
               <span v-else>{{ detail.rating }}</span>
               </el-dialog>
       </span>
       <span v-else>
           <el-dialog :title="'ชื่อร้าน : ' + selectShop.name" v-model="newFlag"  size  ="tiny" @close="close" @open="open">
 <hr style="margin-top:-20px; background-color:#ffeb3b;" />
-            ที่อยู่ :  {{ selectShop.vicinity }}<br/>
+            <img src="../assets/home.png" width="25px" height="25px" style="margin-right: 15px"> : {{ selectShop.vicinity }}<br/>
             <!--   v-model="flag"  -->
-            เวลาเปิด-ปิด :<br/>
+            <img src="../assets/time.png" width="25px" height="25px" style="margin-right: 15px"> :
                           <span v-if="selectShop.opening_hours==null">ไม่ระบุเวลา </span>
                           <span v-else="selectShop.opening_hours!=null">
                           {{selectShop.opening_hours.weekday_text[0]}}<br/>
@@ -39,10 +41,11 @@
                           {{selectShop.opening_hours.weekday_text[5]}}<br/>
                           {{selectShop.opening_hours.weekday_text[6]}}
                         </span><br />
-                        เบอร์ : <span v-if="selectShop.formatted_phone_number==null">ไม่ระบุเบอร์</span>
+            <img src="../assets/call.png" width="25px" height="25px" style="margin-right: 15px">
+                         : <span v-if="selectShop.formatted_phone_number==null">ไม่ระบุเบอร์</span>
                                <span v-else>{{ selectShop.formatted_phone_number }}</span><br/>
-
-                        เรดติ้ง : <span v-if="selectShop.rating==null">ไม่มีรายการคะแนน</span>
+            <img src="../assets/rating.png" width="25px" height="25px" style="margin-right: 15px">
+                         : <span v-if="selectShop.rating==null">ไม่มีรายการคะแนน</span>
                                 <span v-else>{{ selectShop.rating + " ดาว" }}</span>
                                 </el-dialog>
                         </span>

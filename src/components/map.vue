@@ -3,6 +3,11 @@
     {{ loading(localhere[0]) }}
     <gmap-map :center="center" :zoom="12" class="map--gmap">
       <gmap-marker
+      :position="center"
+      :icon="points"
+      :clickable="false">
+    </gmap-marker>
+      <gmap-marker
         v-for="shop in shops"
         :position="shop.geometry.location"
         :clickable="true"
@@ -38,7 +43,8 @@
         localhere: '',
         selectShop: '',
         refShop: {},
-        locate: ''
+        locate: '',
+        points: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
       }
     },
     computed: {
