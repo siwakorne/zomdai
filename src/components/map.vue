@@ -8,7 +8,7 @@
       :clickable="false">
     </gmap-marker>
       <gmap-marker
-        v-for="shop in shops"
+        v-for="(shop,index) in shops" :key=index
         :position="shop.geometry.location"
         :clickable="true"
         @click="TestClick(shop.geometry.location, shop,shop.reference)"
